@@ -5,7 +5,13 @@ using MimeDetective;
 class Program {
 	// https://github.com/MediatedCommunications/Mime-Detective
 	static readonly ContentInspector Inspector =
-		new ContentInspectorBuilder() { Definitions = MimeDetective.Definitions.Default.All() }.Build();
+		new ContentInspectorBuilder() {
+			Definitions =
+				new MimeDetective.Definitions
+					.ExhaustiveBuilder() { UsageType = MimeDetective.Definitions.Licensing.UsageType.PersonalNonCommercial }
+					.Build()
+		}
+			.Build();
 
 	static void Main(string[] args) {
 		string path = ".";
