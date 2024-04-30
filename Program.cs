@@ -8,12 +8,9 @@ class Program {
 		new ContentInspectorBuilder() { Definitions = MimeDetective.Definitions.Default.All() }.Build();
 
 	static void Main(string[] args) {
-		if (args.Length == 0) {
-			Console.WriteLine("Please provide a directory or file path as an argument.");
-			return;
-		}
-
-		string path = args[0];
+		string path = ".";
+		if (args.Length > 0)
+			path = args[0];
 		if (File.Exists(path)) {
 			// It's a file
 			PrintMimeType(path);
@@ -38,6 +35,9 @@ class Program {
 	static void PrintMimeType(string filePath) {
 		Console.WriteLine(filePath);
 		var Results = Inspector.Inspect(filePath);
-		Console.WriteLine(Results.ToString());
+		foreach (var Result in Results) {
+			Console.Write('\t');
+			Console.WriteLine(Result.Definition.File.MimeType);
+		}
 	}
 }
