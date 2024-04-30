@@ -43,6 +43,15 @@ class Program {
 		var Results = Inspector.Inspect(filePath);
 		foreach (var Result in Results) {
 			Console.Write('\t');
+			Console.WriteLine(Result.Definition.File.Description);
+
+			Console.Write("\t\t");
+			Console.WriteLine(string.Join(", ", Result.Definition.File.Extensions));
+
+			Console.Write("\t\t");
+			Console.WriteLine(string.Join(", ", Result.Definition.File.Categories));
+
+			Console.Write("\t\t");
 			Console.WriteLine(Result.Definition.File.MimeType);
 		}
 	}
